@@ -1,0 +1,10 @@
+E:\axon\axon\bin\Debug\netcoreapp2.0\Axon.deps.json
+E:\axon\axon\bin\Debug\netcoreapp2.0\Axon.runtimeconfig.json
+E:\axon\axon\bin\Debug\netcoreapp2.0\Axon.runtimeconfig.dev.json
+E:\axon\axon\bin\Debug\netcoreapp2.0\Axon.dll
+E:\axon\axon\bin\Debug\netcoreapp2.0\Axon.pdb
+E:\axon\axon\obj\Debug\netcoreapp2.0\Axon.csproj.CoreCompileInputs.cache
+E:\axon\axon\obj\Debug\netcoreapp2.0\Axon.AssemblyInfoInputs.cache
+E:\axon\axon\obj\Debug\netcoreapp2.0\Axon.AssemblyInfo.cs
+E:\axon\axon\obj\Debug\netcoreapp2.0\Axon.dll
+E:\axon\axon\obj\Debug\netcoreapp2.0\Axon.pdb
