@@ -9,17 +9,23 @@ namespace Axon
     public class Game
     {
         public GameWindow window;
-        int i = 0;
-
-        public List<Model> Models;
+       
+        public List<Scene> Scenes;
 
         public Game(GameWindow windowInput)
         {
-            Models = new List<Model>();
+            Scenes = new List<Scene>();
             
-            Model model = new Model(@"./test.obj", @"./a.png"); 
-            Models.Add(model);
+            Mesh mesh = new Mesh(@"./test.obj");
+            Shader shader = new Shader("Basic");
+            Material material = new Material(shader);
+            Model model = new Model(mesh, material); 
 
+            Scene scene = new Scene();
+
+            scene.Models.Add(model);
+            Scenes.Add(scene);
+            
             
             this.window = windowInput;
 
@@ -32,12 +38,7 @@ namespace Axon
 
         void window_Load(object sender, EventArgs e)
         {
-             GL.ClearColor(Color.FromArgb(1,5,5,25));
-
-            foreach(var model in Models)
-            {
-                model.Init();
-            }
+             GL.ClearColor(Color.FromArgb(1,120,192,237));
         }
         
         void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -49,18 +50,14 @@ namespace Axon
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            foreach(var model in Models)
-            {
-                model.Draw();
-            }
+            Scenes[0].Draw();
 
             window.SwapBuffers();
+            window.Title = "FPS: " + ((int)(1/window.RenderTime)).ToString();
         }
         
         void window_UpdateFrame(object sender, FrameEventArgs e)
         {
-            i++;
-            GL.ClearColor(Color.FromArgb(1,i%255,5,25));
         }
     }
 }

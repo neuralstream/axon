@@ -7,41 +7,19 @@ namespace Axon
     public class Model
     {
         public Mesh Mesh;
-        public Texture Texture;
-int VAO; int program;
-        public Model(string MeshFilePath, string TextureFilePath)
+        public Material Material;
+
+        int VAO;
+        public Model(Mesh Mesh, Material Material)
         {
-            Mesh = new Mesh(MeshFilePath);
-            //Texture = new Texture(TextureFilePath);
+            this.Mesh = Mesh;
+            this.Material = Material;
+
+            this.Init();
         }
 
-        public void Init()
+        private void Init()
         {
-            string vertexShaderSource = File.ReadAllText(@"./shaders/vertexShader.vert");
-            string fragmentShaderSource = File.ReadAllText(@"./shaders/fragmentShader.frag");
-
-
-            int vertexShader = GL.CreateShader(ShaderType.VertexShader);
-            GL.ShaderSource(vertexShader, vertexShaderSource);
-            GL.CompileShader(vertexShader);
-            Console.WriteLine(GL.GetShaderInfoLog(vertexShader));
-
-            int fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
-            GL.ShaderSource(fragmentShader, fragmentShaderSource);
-            GL.CompileShader(fragmentShader);
-            Console.WriteLine(GL.GetShaderInfoLog(fragmentShader));
-
-            program = GL.CreateProgram();
-            GL.AttachShader(program, vertexShader);
-            GL.AttachShader(program, fragmentShader);
-
-            GL.LinkProgram(program);
-
-            GL.DetachShader(program, vertexShader);
-            GL.DetachShader(program, fragmentShader);
-            GL.DeleteShader(vertexShader);
-            GL.DeleteShader(fragmentShader);
-
             VAO = GL.GenVertexArray();
             int VBO = GL.GenBuffer();
             int EBO = GL.GenBuffer();
@@ -49,10 +27,10 @@ int VAO; int program;
             GL.BindVertexArray(VAO);
             
             GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
-            GL.BufferData(BufferTarget.ArrayBuffer, Mesh.GetVBO().Length * sizeof(float), Mesh.GetVBO(),BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, Mesh.VBO.Length * sizeof(float), Mesh.VBO,BufferUsageHint.StaticDraw);
 
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, Mesh.GetEBO().Length * sizeof(int), Mesh.GetEBO(), BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, Mesh.EBO.Length * sizeof(int), Mesh.EBO, BufferUsageHint.StaticDraw);
 
             GL.EnableVertexAttribArray(0);
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, sizeof(float)*8, 0);
@@ -66,9 +44,9 @@ int VAO; int program;
         public void Draw()
         {
             GL.BindVertexArray(VAO);
-            GL.UseProgram(program);
+            GL.UseProgram(Material.Shader.Program);
 
-            GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.GetEBO().Length);
+            GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.EBO.Length);
         }
     }
 }

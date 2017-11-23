@@ -17,6 +17,10 @@ namespace Axon
         private List<Vector2> TexCords;
         private List<int[]> Indices;
 
+        public float[] VBO;
+        public float[] EBO;
+
+        
         public Mesh(string FilePath)
         {
             Vertices = new List<Vertex>();
@@ -134,6 +138,9 @@ namespace Axon
                         }
                     }
                 }
+
+                this.VBO = GetVBO();
+                this.EBO = GetEBO();
             }
             catch (Exception e)
             {
@@ -142,7 +149,7 @@ namespace Axon
             }   
         }
 
-        public float[] GetVBO()
+        private float[] GetVBO()
         {
             float[] VBO = new float[Vertices.Count*(3+3+2)];
 
@@ -162,7 +169,7 @@ namespace Axon
 
             return VBO;
         }
-         public float[] GetEBO()
+        private float[] GetEBO()
         {
             float[] EBO = new float[Faces.Count*3];
             
