@@ -53,4 +53,18 @@ namespace Axon
             GL.UniformMatrix4(transform, false, ref Transformation.Matrix);
             GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.EBO.Length);
         }
+
+        public void Scale(Vector3 Factor)
+        {
+            this.Transformation.Scale = Vector3.Multiply(this.Transformation.Scale, Factor);
+        }
+        public void Move(Vector3 Distance)
+        {
+            this.Transformation.Position = Vector3.Add(this.Transformation.Position, Distance);
+        }
+        public void Rotate(Vector3 Angle)
+        {
+            this.Transformation.Rotation = Vector3.Add(this.Transformation.Rotation, Angle);
+        }
+    }
 }

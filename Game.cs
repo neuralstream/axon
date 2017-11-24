@@ -26,7 +26,6 @@ namespace Axon
             scene.Models.Add(model);
             Scenes.Add(scene);
             
-            
             this.window = windowInput;
 
             window.Load += window_Load;

@@ -21,11 +21,11 @@ namespace Axon
         {
             get
             {
-                return this.scale;
+                return this.translation;
             }
             set
             {
-                this.scale = value;
+                this.translation = value;
                 this.update();
             }
 
@@ -34,11 +34,11 @@ namespace Axon
         {
             get
             {
-                return this.scale;
+                return this.rotation;
             }
             set
             {
-                this.scale = value;
+                this.rotation = value;
                 this.update();
             }    
         }
@@ -59,7 +59,7 @@ namespace Axon
         {
             this.translation = new Vector3(0,0,0);
             this.scale = new Vector3(1,1,1);
-            this.rotation = new Vector3(0,1,0);
+            this.rotation = new Vector3(0,0,0);
 
             this.update();
         }
