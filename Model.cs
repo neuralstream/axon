@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using OpenTK;
 using OpenTK.Graphics.OpenGL;
 
 namespace Axon
@@ -8,13 +9,15 @@ namespace Axon
     {
         public Mesh Mesh;
         public Material Material;
+        public Transformation Transformation;
 
         int VAO;
         public Model(Mesh Mesh, Material Material)
         {
             this.Mesh = Mesh;
             this.Material = Material;
-
+            this.Transformation = new Transformation();
+            
             this.Init();
         }
 
@@ -40,13 +43,14 @@ namespace Axon
             GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, sizeof(float)*8, sizeof(float)*6);
             GL.BindVertexArray(0);
 
+            
         }
         public void Draw()
         {
             GL.BindVertexArray(VAO);
             GL.UseProgram(Material.Shader.Program);
-
+            int transform = GL.GetUniformLocation(Material.Shader.Program, "transform");
+            GL.UniformMatrix4(transform, false, ref Transformation.Matrix);
             GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.EBO.Length);
         }
-    }
 }
