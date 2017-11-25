@@ -78,7 +78,7 @@ namespace Axon
                                 )
                             );
                         }
-                        else if(line.StartsWith("f "))
+                        if(line.StartsWith("f "))
                         {
                             words = line.Split(" ");
                             
@@ -117,26 +117,20 @@ namespace Axon
                                 }
                             );        
                         }
-
-                        while(Vertices.Count != Positions.Count)
-                        {
-                            Vertices.Add(
-                                new Vertex
-                                (
-                                    new Vector3(),
-                                    new Vector3(),
-                                    new Vector2()
-                                )
-                            );
-                        }
-
-                        foreach(var index in Indices)
-                        {
-                            Vertices[index[0]-1].Position = Positions[index[0]-1];
-                            Vertices[index[0]-1].Normal = Normals[index[1]-1];
-                            Vertices[index[0]-1].TexCord = TexCords[index[2]-1];
-                        }
                     }
+                }
+
+                Console.WriteLine(Indices[35][2]);
+                for(int i = 0; i < (Faces.Count * 3); i++)
+                {
+                    Vertices.Add(
+                        new Vertex
+                        (
+                            Positions[Indices[i][0]-1],
+                            Normals[Indices[i][2]-1],
+                            TexCords[Indices[i][1]-1]
+                        )
+                    );
                 }
 
                 this.VBO = GetVBO();
@@ -175,9 +169,7 @@ namespace Axon
             
             for(int i = 0; i < Faces.Count; i++)
             {
-                EBO[i*3+0] = Faces[i].VertexIndex1;
-                EBO[i*3+1] = Faces[i].VertexIndex2;
-                EBO[i*3+2] = Faces[i].VertexIndex3;
+                EBO[i] = i;
             }
 
             return EBO;

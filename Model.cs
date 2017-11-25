@@ -41,6 +41,7 @@ namespace Axon
             GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, sizeof(float)*8, sizeof(float)*3);
             GL.EnableVertexAttribArray(2);
             GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, sizeof(float)*8, sizeof(float)*6);
+            
             GL.BindVertexArray(0);
 
             

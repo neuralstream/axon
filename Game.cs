@@ -12,20 +12,12 @@ namespace Axon
        
         public List<Scene> Scenes;
 
+        public List<Screen> Screens;
         public Game(GameWindow windowInput)
         {
             Scenes = new List<Scene>();
-            
-            Mesh mesh = new Mesh(@"./test.obj");
-            Shader shader = new Shader("Basic");
-            Material material = new Material(shader);
-            Model model = new Model(mesh, material); 
+            Screens = new List<Screen>();
 
-            Scene scene = new Scene();
-
-            scene.Models.Add(model);
-            Scenes.Add(scene);
-            
             this.window = windowInput;
 
             window.Load += window_Load;
@@ -49,7 +41,11 @@ namespace Axon
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            Scenes[0].Draw();
+            foreach(Scene scene in Scenes)
+            {
+                scene.Models[0].Rotate(new Vector3 (0,0.005f,0));
+                scene.Draw();
+            }
 
             window.SwapBuffers();
             window.Title = "FPS: " + ((int)(1/window.RenderTime)).ToString();
