@@ -26,11 +26,11 @@ namespace Axon
 
             Model model2 = new Model(mesh, material); 
             model2.Scale(new Vector3(0.10f,0.10f,0.10f));
-            model2.Move(new Vector3(-0.25f,0,0)); 
+            model2.Move(new Vector3(-1.0f,0,0)); 
 
             Model model3 = new Model(mesh, material); 
             model3.Scale(new Vector3(0.10f,0.10f,0.10f));
-            model3.Move(new Vector3(0.25f,0,0)); 
+            model3.Move(new Vector3(1.0f,0,0)); 
                       
             Scene scene = new Scene();
 
