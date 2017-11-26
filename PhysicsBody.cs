@@ -2,11 +2,11 @@ using System;
 
 namespace Axon
 {
-    public class PhisicBody
+    public class PhysicsBody : Element
     {
-        public PhisicBody()
+        public PhysicsBody()
         {
-            
+
         }
     }
 }
