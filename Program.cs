@@ -40,10 +40,10 @@ namespace Axon
                       
             Scene scene = new Scene();
 
-            scene.Models.Add(model);
-            scene.Models.Add(model2);
-            scene.Models.Add(model3);
-            scene.Models.Add(background);
+            scene.Entities.Add(model);
+            scene.Entities.Add(model2);
+            scene.Entities.Add(model3);
+            scene.Entities.Add(background);
             Game.Scenes.Add(scene);
         }
         

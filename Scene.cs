@@ -6,19 +6,19 @@ namespace Axon
     public class Scene
     {
           public List<Camera> Cameras;
-          public List<Model> Models;
+          public List<Model> Entities;
 
         public Scene()
         {
             Cameras = new List<Camera>();
-            Models = new List<Model>();
+            Entities = new List<Model>();
         }
 
         public void Draw()
         {
-            foreach(var model in Models)
+            foreach(var entity in Entities)
             {
-                model.Draw();
+                entity.Draw();
             }
         }
     }
