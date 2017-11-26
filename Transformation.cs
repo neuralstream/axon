@@ -82,11 +82,11 @@ namespace Axon
 
             Matrix = Matrix4.Identity;
 
-            Matrix = Matrix4.Mult(scaleMatrix, Matrix);
+            Matrix = Matrix4.Mult(translationMatrix, Matrix);
             Matrix = Matrix4.Mult(rotationXMatrix, Matrix);
             Matrix = Matrix4.Mult(rotationYMatrix, Matrix);
             Matrix = Matrix4.Mult(rotationZMatrix, Matrix);
-            Matrix = Matrix4.Mult(translationMatrix, Matrix);
+            Matrix = Matrix4.Mult(scaleMatrix, Matrix);
         }
     }
 }

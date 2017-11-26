@@ -5,13 +5,12 @@ namespace Axon
     public class Material
     {
 
-        //public Texture Texture;
+        public Texture Texture;
         public Shader Shader;
-        public Material(Shader Shader)
+        public Material(Shader Shader, String TextureFilePath)
         {
             this.Shader = Shader;
-            // this.Texture = Texture;
-            //Texture = new Texture(TextureFilePath);
+            Texture = new Texture(TextureFilePath);
         }
     }
 }

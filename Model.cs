@@ -52,6 +52,11 @@ namespace Axon
             GL.UseProgram(Material.Shader.Program);
             int transform = GL.GetUniformLocation(Material.Shader.Program, "transform");
             GL.UniformMatrix4(transform, false, ref Transformation.Matrix);
+
+            int texture = GL.GetUniformLocation(Material.Shader.Program, "tex1");
+            GL.Uniform1(texture,0);
+            GL.ActiveTexture(TextureUnit.Texture0);
+            GL.BindTexture(TextureTarget.Texture2D, this.Material.Texture.Id);
             GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.EBO.Length);
         }
 

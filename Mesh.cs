@@ -120,7 +120,6 @@ namespace Axon
                     }
                 }
 
-                Console.WriteLine(Indices[35][2]);
                 for(int i = 0; i < (Faces.Count * 3); i++)
                 {
                     Vertices.Add(
@@ -135,6 +134,12 @@ namespace Axon
 
                 this.VBO = GetVBO();
                 this.EBO = GetEBO();
+
+                foreach(var i in VBO)
+                {
+                    Console.WriteLine(i.ToString());
+                }
+                
             }
             catch (Exception e)
             {

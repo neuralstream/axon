@@ -20,13 +20,13 @@ namespace Axon
         {
             Mesh mesh = new Mesh(@"./cube.obj");
             Shader shader = new Shader("Basic");
-            Material material = new Material(shader);
+            Material material = new Material(shader, @"./cube.png");
             Model model = new Model(mesh, material); 
-            model.Scale(new Vector3(0.5f,0.5f,0.5f));
-            model.Move(new Vector3(0,0,0.5f));
+            model.Scale(new Vector3(0.25f,0.25f,0.25f));
+            model.Move(new Vector3(0,0.5f,0.5f));
             
             Scene scene = new Scene();
-            
+
             scene.Models.Add(model);
             Game.Scenes.Add(scene);
         }

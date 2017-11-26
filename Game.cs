@@ -30,6 +30,7 @@ namespace Axon
         void window_Load(object sender, EventArgs e)
         {
              GL.ClearColor(Color.FromArgb(1,120,192,237));
+             GL.Enable(EnableCap.DepthTest);
         }
         
         void window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -39,11 +40,11 @@ namespace Axon
         
         void window_RenderFrame(object sender, FrameEventArgs e)
         {
-            GL.Clear(ClearBufferMask.ColorBufferBit);
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             foreach(Scene scene in Scenes)
             {
-                scene.Models[0].Rotate(new Vector3 (0,0.005f,0));
+                scene.Models[0].Rotate(new Vector3 (0,0,0));
                 scene.Draw();
             }
 
