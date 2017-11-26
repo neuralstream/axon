@@ -18,9 +18,9 @@ namespace Axon
         }
         static void InitGame(Game Game)
         {
-            Mesh mesh = new Mesh(@"./cube.obj");
+            Mesh mesh = new Mesh(@"./resources/cube.obj");
             Shader shader = new Shader("Basic");
-            Material material = new Material(shader, @"./cube.png");
+            Material material = new Material(shader, @"./resources/cube.png");
             Model model = new Model(mesh, material); 
             model.Scale(new Vector3(0.25f,0.25f,0.25f));
             model.Move(new Vector3(0,0.5f,0.5f));
