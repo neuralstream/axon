@@ -8,13 +8,12 @@ namespace Axon
     {
         static void Main(string[] args)
         {
-            GameWindow window = new GameWindow(800,600,new GraphicsMode(0,0,0,8),"AXON");
+            GameWindow window = new GameWindow(600,600,new GraphicsMode(0,8,8,8),"AXON");
 
             Game game = new Game(window);
-
             InitGame(game);
 
-            window.Run(1/120);
+            window.Run();
         }
         static void InitGame(Game Game)
         {

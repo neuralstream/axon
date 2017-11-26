@@ -44,7 +44,7 @@ namespace Axon
 
             foreach(Scene scene in Scenes)
             {
-                scene.Models[0].Rotate(new Vector3 (0,0,0));
+                scene.Models[0].Rotate(new Vector3 (0,0.01f,0));
                 scene.Draw();
             }
 
