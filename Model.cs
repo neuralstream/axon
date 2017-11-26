@@ -45,7 +45,7 @@ namespace Axon
             GL.BindVertexArray(0);
         }
 
-        public void Draw()
+        override public void Update()
         {
             GL.BindVertexArray(VAO);
             GL.UseProgram(Material.Shader.Program);

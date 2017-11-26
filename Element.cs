@@ -9,9 +9,9 @@ namespace Axon
 
         }
 
-        public void Update()
+        public virtual void Update()
         {
-            
+
         }
     }
 }
