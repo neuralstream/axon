@@ -14,11 +14,11 @@ namespace Axon
             Entities = new List<Entity>();
         }
 
-        public void Draw()
+        public void Update()
         {
             foreach(var entity in Entities)
             {
-                entity.Draw();
+                entity.Update();
             }
         }
     }

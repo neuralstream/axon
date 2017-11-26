@@ -21,8 +21,8 @@ namespace Axon
 
         public void Update()
         {
-            this.updateChildren();
-            this.updateElements();
+           // this.updateChildren();
+           // this.updateElements();
         }
         public void Scale(Vector3 Factor)
         {
