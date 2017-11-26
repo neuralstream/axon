@@ -5,7 +5,7 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Axon
 {
-    public class Model
+    public class Model : Element
     {
         public Mesh Mesh;
         public Material Material;
@@ -43,9 +43,8 @@ namespace Axon
             GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, sizeof(float)*8, sizeof(float)*6);
             
             GL.BindVertexArray(0);
-
-            
         }
+
         public void Draw()
         {
             GL.BindVertexArray(VAO);
@@ -58,19 +57,6 @@ namespace Axon
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, this.Material.Texture.Id);
             GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.EBO.Length);
-        }
-
-        public void Scale(Vector3 Factor)
-        {
-            this.Transformation.Scale = Vector3.Multiply(this.Transformation.Scale, Factor);
-        }
-        public void Move(Vector3 Distance)
-        {
-            this.Transformation.Position = Vector3.Add(this.Transformation.Position, Distance);
-        }
-        public void Rotate(Vector3 Angle)
-        {
-            this.Transformation.Rotation = Vector3.Add(this.Transformation.Rotation, Angle);
         }
     }
 }

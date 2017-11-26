@@ -6,12 +6,12 @@ namespace Axon
     public class Scene
     {
           public List<Camera> Cameras;
-          public List<Model> Entities;
+          public List<Entity> Entities;
 
         public Scene()
         {
             Cameras = new List<Camera>();
-            Entities = new List<Model>();
+            Entities = new List<Entity>();
         }
 
         public void Draw()
