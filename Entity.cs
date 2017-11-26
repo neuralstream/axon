@@ -13,15 +13,16 @@ namespace Axon
         public Transformation Transformation;
         public Entity()
         {
-            Parent = new Entity();
-            Children = new List<Entity>();
-            Elements = new List<Element>();
-            Transformation = new Transformation();
+            this.Parent = new Entity();
+            this.Children = new List<Entity>();
+            this.Elements = new List<Element>();
+            this.Transformation = new Transformation();
         }
 
         public void Update()
         {
-            
+            this.updateChildren();
+            this.updateElements();
         }
         public void Scale(Vector3 Factor)
         {
@@ -34,6 +35,21 @@ namespace Axon
         public void Rotate(Vector3 Angle)
         {
             this.Transformation.Rotation = Vector3.Add(this.Transformation.Rotation, Angle);
+        }
+
+        private void updateChildren()
+        {
+            foreach(Entity child in Children)
+            {
+                child.Update();
+            }
+        }
+        private void updateElements()
+        {
+            foreach (Element element in Elements)
+            {
+                element.Update();
+            }
         }
     }
 }
