@@ -19,9 +19,9 @@ namespace Axon
             Transformation = new Transformation();
         }
 
-        public void Draw()
+        public void Update()
         {
-
+            
         }
         public void Scale(Vector3 Factor)
         {

@@ -8,5 +8,10 @@ namespace Axon
         {
 
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }
