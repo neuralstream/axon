@@ -134,9 +134,6 @@ namespace Axon
 
                 this.VBO = GetVBO();
                 this.EBO = GetEBO();
-
-                Debug.VBO(VBO);
-
             }
             catch (Exception e)
             {

@@ -17,7 +17,13 @@ namespace Axon
         }
         static void InitGame(Game Game)
         {
-            Mesh mesh = new Mesh(@"./resources/sword.obj");
+            Mesh mesh2 = new Mesh(@"./resources/background.obj");
+            Shader shader2 = new Shader("Basic");
+            Material material2 = new Material(shader2, @"./resources/background.png");
+            Model background = new Model(mesh2, material2); 
+            background.Move(new Vector3(0,0,0.5f));
+
+            Mesh mesh = new Mesh(@"./resources/sword2.obj");
             Shader shader = new Shader("BasicLight");
             Material material = new Material(shader, @"./resources/sword.png");
             Model model = new Model(mesh, material); 
@@ -26,17 +32,18 @@ namespace Axon
 
             Model model2 = new Model(mesh, material); 
             model2.Scale(new Vector3(0.10f,0.10f,0.10f));
-            model2.Move(new Vector3(-1.0f,0,0)); 
+            model2.Move(new Vector3(-0.5f,-0.5f,0)); 
 
             Model model3 = new Model(mesh, material); 
             model3.Scale(new Vector3(0.10f,0.10f,0.10f));
-            model3.Move(new Vector3(1.0f,0,0)); 
+            model3.Move(new Vector3(0.5f,0.5f,0)); 
                       
             Scene scene = new Scene();
 
             scene.Models.Add(model);
             scene.Models.Add(model2);
             scene.Models.Add(model3);
+            scene.Models.Add(background);
             Game.Scenes.Add(scene);
         }
         
