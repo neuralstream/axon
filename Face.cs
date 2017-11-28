@@ -2,7 +2,6 @@ namespace Axon
 {
     public class Face
     {
-        public int[] indices;
         public int VertexIndex1;
         public int VertexIndex2;
         public int VertexIndex3;

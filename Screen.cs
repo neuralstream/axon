@@ -10,16 +10,17 @@ namespace Axon
         public int Height;
         public int X;
         public int Y;
-        public Shader Shader;
         public GameWindow Window;
-        public Screen(int Width, int Height, int X, int Y, GameWindow Window)
+        public Shader Shader;
+
+        public Screen(int X, int Y, int Width, int Height, GameWindow Window)
         {
-            this.Width = Width;
-            this.Height = Height;
             this.X = X;
             this.Y = Y;
-            this.Window = Window;
+            this.Width = Width;
+            this.Height = Height;
 
+            this.Window = Window;
             this.Shader = new Shader("Screen");
         }
 

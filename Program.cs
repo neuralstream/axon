@@ -17,34 +17,25 @@ namespace Axon
         }
         static void InitGame(Game Game)
         {
-            Mesh mesh2 = new Mesh(@"./resources/background.obj");
-            Shader shader2 = new Shader("Basic");
-            Material material2 = new Material(shader2, @"./resources/background.png");
-            Model BackgroundModel = new Model(mesh2, material2); 
             Entity Background = new Entity();
+            Mesh BackgroundMesh = new Mesh(@"./resources/background.obj");
+            Shader ShaderBasic = new Shader("Basic");
+            Material BackgroundMaterial = new Material(ShaderBasic, @"./resources/background.png");
+            Model BackgroundModel = new Model(BackgroundMesh, BackgroundMaterial, Background.Transformation); 
             Background.Elements.Add(BackgroundModel);
             Background.Move(new Vector3(0,0,0.5f));
 
-            // Mesh mesh = new Mesh(@"./resources/sword2.obj");
-            // Shader shader = new Shader("BasicLight");
-            // Material material = new Material(shader, @"./resources/sword.png");
-            // Model model = new Model(mesh, material); 
-            // model.Scale(new Vector3(0.15f,0.15f,0.15f));
-            // model.Move(new Vector3(0,-0.25f,0)); 
-
-            // Model model2 = new Model(mesh, material); 
-            // model2.Scale(new Vector3(0.10f,0.10f,0.10f));
-            // model2.Move(new Vector3(-0.5f,-0.5f,0)); 
-
-            // Model model3 = new Model(mesh, material); 
-            // model3.Scale(new Vector3(0.10f,0.10f,0.10f));
-            // model3.Move(new Vector3(0.5f,0.5f,0)); 
+            Entity Sword = new Entity();
+            Mesh SwordMesh = new Mesh(@"./resources/sword2.obj");
+            Shader ShaderBasicLight = new Shader("BasicLight");
+            Material SwordMaterial = new Material(ShaderBasicLight, @"./resources/sword.png");
+            Model SwordModel = new Model(SwordMesh, SwordMaterial, Sword.Transformation); 
+            Sword.Elements.Add(SwordModel);
+            Sword.Scale(new Vector3(0.15f,0.15f,0.15f));
+            Sword.Move(new Vector3(0,-0.25f,0)); 
                       
             Scene scene = new Scene();
-
-            // scene.Entities.Add(model);
-            // scene.Entities.Add(model2);
-            // scene.Entities.Add(model3);
+            scene.Entities.Add(Sword);
             scene.Entities.Add(Background);
             Game.Scenes.Add(scene);
         }

@@ -2,7 +2,7 @@ using System;
 
 namespace Axon
 {
-    public class Camera
+    public class Camera : Entity
     {
         public Camera()
         {

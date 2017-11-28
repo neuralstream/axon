@@ -9,14 +9,15 @@ namespace Axon
     {
         public Mesh Mesh;
         public Material Material;
-        public Transformation Transformation;
 
+        public Transformation Transformation;
         int VAO;
-        public Model(Mesh Mesh, Material Material)
+
+        public Model(Mesh Mesh, Material Material, Transformation Transformation)
         {
             this.Mesh = Mesh;
             this.Material = Material;
-            this.Transformation = new Transformation();
+            this.Transformation = Transformation;
             
             this.Init();
         }

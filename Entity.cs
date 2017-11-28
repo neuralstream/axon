@@ -9,20 +9,21 @@ namespace Axon
         public Entity Parent;
         public List<Entity> Children;
         //public string[] Tags;
-        public List<Element> Elements;
         public Transformation Transformation;
+        public List<Element> Elements;
         public Entity()
         {
-            this.Parent = new Entity();
+            this.Parent = null;
             this.Children = new List<Entity>();
-            this.Elements = new List<Element>();
+            
             this.Transformation = new Transformation();
+            this.Elements = new List<Element>();
         }
 
         public void Update()
         {
-           // this.updateChildren();
-           // this.updateElements();
+            this.updateChildren();
+            this.updateElements();
         }
         public void Scale(Vector3 Factor)
         {
