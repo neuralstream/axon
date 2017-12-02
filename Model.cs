@@ -57,6 +57,7 @@ namespace Axon
             GL.Uniform1(texture,0);
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, this.Material.Texture.Id);
+            
             GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.EBO.Length);
         }
     }

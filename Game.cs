@@ -11,8 +11,8 @@ namespace Axon
         public GameWindow window;
        
         public List<Scene> Scenes;
-
         public List<Screen> Screens;
+
         public Game(GameWindow windowInput)
         {
             Scenes = new List<Scene>();
@@ -44,7 +44,11 @@ namespace Axon
 
             foreach(Scene scene in Scenes)
             {
-                scene.Update();
+               // scene.Update();
+            }
+            foreach(Screen screen in Screens)
+            {
+                screen.Update();
             }
 
             window.SwapBuffers();

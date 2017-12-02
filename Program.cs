@@ -37,7 +37,11 @@ namespace Axon
             Scene scene = new Scene();
             scene.Entities.Add(Sword);
             scene.Entities.Add(Background);
+            Screen Screen = new Screen(-1,0,1,1);
+            Game.Screens.Add(Screen);
             Game.Scenes.Add(scene);
+
+            
         }
         
     }
