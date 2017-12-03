@@ -11,7 +11,6 @@ out vec3 nor;
 out vec2 tex;
 out vec4 col;
 
-
 out vec3 FragPos;
 
 void main()

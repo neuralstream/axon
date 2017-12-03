@@ -1,10 +1,11 @@
 #version 130
 
-in vec4 nColor;
+in vec2 tex;
+uniform sampler2D screenTex;
 
 out vec4 FragColor;
 
 void main()
 {
-    FragColor = nColor;
+    FragColor = texture(screenTex,tex);
 }

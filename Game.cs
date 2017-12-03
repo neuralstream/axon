@@ -40,12 +40,9 @@ namespace Axon
         
         void window_RenderFrame(object sender, FrameEventArgs e)
         {
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            foreach(Scene scene in Scenes)
-            {
-               // scene.Update();
-            }
             foreach(Screen screen in Screens)
             {
                 screen.Update();

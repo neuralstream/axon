@@ -8,7 +8,7 @@ namespace Axon
     {
         static void Main(string[] args)
         {
-            GameWindow window = new GameWindow(600,600,new GraphicsMode(0,8,8,8),"AXON");
+            GameWindow window = new GameWindow(800,600,new GraphicsMode(0,24,8,8),"AXON");
 
             Game game = new Game(window);
             InitGame(game);
@@ -16,6 +16,27 @@ namespace Axon
             window.Run();
         }
         static void InitGame(Game Game)
+        {
+            // Create scene
+            Scene Scene1 = new Scene();
+            Game.Scenes.Add(Scene1);
+
+            // Create entities
+            Scene1.Entities.Add(createBackground());
+            Scene1.Entities.Add(createSword());
+
+            // Create cameras
+            Camera Camera1 = new Camera(Scene1);
+            Scene1.Cameras.Add(Camera1);
+
+            // Create screens
+            Screen Screen1 = new Screen(-1,-1, 1, 0, Camera1);
+            Screen Screen2 = new Screen(-1, 0, 1, 1, Camera1);
+            Game.Screens.Add(Screen1);
+            Game.Screens.Add(Screen2);
+        }
+
+        static Entity createBackground()
         {
             Entity Background = new Entity();
             Mesh BackgroundMesh = new Mesh(@"./resources/background.obj");
@@ -25,6 +46,11 @@ namespace Axon
             Background.Elements.Add(BackgroundModel);
             Background.Move(new Vector3(0,0,0.5f));
 
+            return Background;
+        }
+
+        static Entity createSword()
+        {
             Entity Sword = new Entity();
             Mesh SwordMesh = new Mesh(@"./resources/sword2.obj");
             Shader ShaderBasicLight = new Shader("BasicLight");
@@ -33,15 +59,8 @@ namespace Axon
             Sword.Elements.Add(SwordModel);
             Sword.Scale(new Vector3(0.15f,0.15f,0.15f));
             Sword.Move(new Vector3(0,-0.25f,0)); 
-                      
-            Scene scene = new Scene();
-            scene.Entities.Add(Sword);
-            scene.Entities.Add(Background);
-            Screen Screen = new Screen(-1,0,1,1);
-            Game.Screens.Add(Screen);
-            Game.Scenes.Add(scene);
 
-            
+            return Sword;
         }
         
     }

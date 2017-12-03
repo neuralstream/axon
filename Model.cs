@@ -31,7 +31,7 @@ namespace Axon
             GL.BindVertexArray(VAO);
             
             GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
-            GL.BufferData(BufferTarget.ArrayBuffer, Mesh.VBO.Length * sizeof(float), Mesh.VBO,BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, Mesh.VBO.Length * sizeof(float), Mesh.VBO, BufferUsageHint.StaticDraw);
 
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
             GL.BufferData(BufferTarget.ElementArrayBuffer, Mesh.EBO.Length * sizeof(int), Mesh.EBO, BufferUsageHint.StaticDraw);
@@ -43,13 +43,13 @@ namespace Axon
             GL.EnableVertexAttribArray(2);
             GL.VertexAttribPointer(2, 2, VertexAttribPointerType.Float, false, sizeof(float)*8, sizeof(float)*6);
             
-            GL.BindVertexArray(0);
+            //GL.BindVertexArray(0);
         }
 
         override public void Update()
         {
-            GL.BindVertexArray(VAO);
             GL.UseProgram(Material.Shader.Program);
+            GL.BindVertexArray(VAO);
             int transform = GL.GetUniformLocation(Material.Shader.Program, "transform");
             GL.UniformMatrix4(transform, false, ref Transformation.Matrix);
 
@@ -58,7 +58,7 @@ namespace Axon
             GL.ActiveTexture(TextureUnit.Texture0);
             GL.BindTexture(TextureTarget.Texture2D, this.Material.Texture.Id);
             
-            GL.DrawArrays(PrimitiveType.Triangles,0,Mesh.EBO.Length);
+            GL.DrawElements(PrimitiveType.Triangles,Mesh.EBO.Length, DrawElementsType.UnsignedInt,0);
         }
     }
 }

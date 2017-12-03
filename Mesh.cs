@@ -18,7 +18,7 @@ namespace Axon
         private List<int[]> Indices;
 
         public float[] VBO;
-        public float[] EBO;
+        public int[] EBO;
 
         
         public Mesh(string FilePath)
@@ -89,9 +89,9 @@ namespace Axon
                             Faces.Add(
                                 new Face
                                 (
-                                    int.Parse(ver1[0]),
-                                    int.Parse(ver2[0]),
-                                    int.Parse(ver3[0])
+                                    int.Parse(ver1[0])-1,
+                                    int.Parse(ver2[0])-1,
+                                    int.Parse(ver3[0])-1
                                 )
                             );      
 
@@ -144,7 +144,7 @@ namespace Axon
 
         private float[] GetVBO()
         {
-            float[] VBO = new float[Vertices.Count*(3+3+2)];
+            float[] VBO = new float[Vertices.Count*8];
 
             for(int i = 0; i < Vertices.Count; i++)
             {
@@ -162,11 +162,11 @@ namespace Axon
 
             return VBO;
         }
-        private float[] GetEBO()
+        private int[] GetEBO()
         {
-            float[] EBO = new float[Faces.Count*3];
+            int[] EBO = new int[Faces.Count*3];
             
-            for(int i = 0; i < Faces.Count; i++)
+            for(int i = 0; i < Faces.Count*3; i++)
             {
                 EBO[i] = i;
             }
