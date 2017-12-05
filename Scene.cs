@@ -5,23 +5,28 @@ namespace Axon
 {
     public class Scene
     {
-          public List<Camera> Cameras;
+          public List<Entity> Cameras;
           public List<Entity> Entities;
-
           public List<Light> Lights;
 
         public Scene()
         {
-            Cameras = new List<Camera>();
+            Cameras = new List<Entity>();
             Entities = new List<Entity>();
             Lights = new List<Light>();
         }
 
         public void Update()
         {
-            foreach(var entity in Entities)
+            foreach(Entity entity in Entities)
             {
-                entity.Update();
+                foreach (Element element in entity.Elements)
+                {
+                   if(element.GetType() == typeof(Camera))
+                   {
+                       element.Update();
+                   }
+                }
             }
         }
     }

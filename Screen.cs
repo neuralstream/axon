@@ -10,21 +10,21 @@ namespace Axon
         public float Y1;
         public float X2;
         public float Y2;
-        public Camera Camera;
+        public int Texture;
         public Shader Shader;
 
-        private float[] VBO;
-        private int[] EBO;
+        private float[] vertices;
+        private int[] indices;
         
-        private int VAOid, VBOid, EBOid;
+        private int VAO, VBO, EBO;
 
-        public Screen(float X1, float Y1, float X2, float Y2, Camera Camera)
+        public Screen(float X1, float Y1, float X2, float Y2, int Texture)
         {
             this.X1 = X1;
             this.Y1 = Y1;
             this.X2 = X2;
             this.Y2 = Y2;
-            this.Camera = Camera;
+            this.Texture = Texture;
             this.Shader = new Shader("Screen");
 
             buildMesh();
@@ -33,7 +33,7 @@ namespace Axon
         private void buildMesh()
         {
 
-            this.VBO = new float[]
+            this.vertices = new float[]
             {
                 this.X1, this.Y1, 0.0f,
                 0.0f, 0.0f, 
@@ -45,34 +45,23 @@ namespace Axon
                 1.0f, 0.0f
             };
 
-            // this.VBO = new float[]
-            // {
-            //     -1.0f,  1.0f,  0.0f, 1.0f,
-            //     -1.0f, -1.0f,  0.0f, 0.0f,
-            //      1.0f, -1.0f,  1.0f, 0.0f,
-
-            //     -1.0f,  1.0f,  0.0f, 1.0f,
-            //      1.0f, -1.0f,  1.0f, 0.0f,
-            //      1.0f,  1.0f,  1.0f, 1.0f
-            // };
-
-            this.EBO = new int[]
+            this.indices = new int[]
             {
                 0,1,2,
                 2,3,0
             };
 
-            VAOid = GL.GenVertexArray();
-            VBOid = GL.GenBuffer();
-            EBOid = GL.GenBuffer();
+            VAO = GL.GenVertexArray();
+            VBO = GL.GenBuffer();
+            EBO = GL.GenBuffer();
 
-            GL.BindVertexArray(VAOid);
+            GL.BindVertexArray(VAO);
             
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VBOid);
-            GL.BufferData(BufferTarget.ArrayBuffer, VBO.Length * sizeof(float), VBO, BufferUsageHint.StaticDraw);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VBO);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBOid);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, EBO.Length * sizeof(int), EBO, BufferUsageHint.StaticDraw);
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, EBO);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(int), indices, BufferUsageHint.StaticDraw);
 
             GL.EnableVertexAttribArray(0);
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, sizeof(float)*5, 0);
@@ -84,36 +73,24 @@ namespace Axon
 
         public void Update()
         {
-            // ustawinie bufora do ktorego renerujemy scene
-            GL.BindFramebuffer(FramebufferTarget.Framebuffer, Camera.FBO);
-            // włączamy ocene głebi obiektów
-            GL.Enable(EnableCap.DepthTest);
-            // czyscimy bufory
-            GL.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-            //renderujemy scene
-            Camera.Scene.Update();
-
             // przełączny się na buffor głowny
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, 0);
             // wyłączamy ocene głębi
             GL.Disable(EnableCap.DepthTest);
-            // czyścimy buffory
-           
 
             // wybieramy shader screenu
             GL.UseProgram(Shader.Program);
             // rysujemy screen
-            GL.BindVertexArray(VAOid);
+            GL.BindVertexArray(VAO);
 
-            int texture = GL.GetUniformLocation(Shader.Program, "screenTex");
-            GL.Uniform1(texture,0);
+            // wrzucamu texturę do samplera
+            int textureUniform = GL.GetUniformLocation(Shader.Program, "screenTex");
+            GL.Uniform1(textureUniform,0);
             
             GL.ActiveTexture(TextureUnit.Texture0);
-            GL.BindTexture(TextureTarget.Texture2D, Camera.Texture);
+            GL.BindTexture(TextureTarget.Texture2D, Texture);
             
-            GL.DrawElements(PrimitiveType.Triangles,EBO.Length, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(PrimitiveType.Triangles,indices.Length, DrawElementsType.UnsignedInt, 0);
         }
     }
 }

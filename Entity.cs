@@ -6,22 +6,62 @@ namespace Axon
 {
     public class Entity
     {
+        public String Name;
+        public List<String> Tags;
         public Entity Parent;
         public List<Entity> Children;
         //public string[] Tags;
         public Transformation Transformation;
         public List<Element> Elements;
+
         public Entity()
-        {
+        {   
+            this.Name = String.Empty;
+            this.Tags = new List<String>();
+
             this.Parent = null;
             this.Children = new List<Entity>();
             
             this.Transformation = new Transformation();
             this.Elements = new List<Element>();
         }
+        public Entity(String Name)
+        {
+            this.Name = Name;
+            this.Tags = new List<String>();
+
+            this.Parent = null;
+            this.Children = new List<Entity>();
+            
+            this.Transformation = new Transformation();
+            this.Elements = new List<Element>();
+        }
+        public Entity(Entity Parent)
+        {
+            this.Name = String.Empty;
+            this.Tags = new List<String>();
+
+            this.Parent = Parent;
+            this.Children = new List<Entity>();
+            
+            this.Transformation = new Transformation();
+            this.Elements = new List<Element>();
+        }
+        public Entity(String Name,Entity Parent)
+        {
+            this.Name = Name;
+            this.Tags = new List<String>();
+
+            this.Parent = Parent;
+            this.Children = new List<Entity>();
+
+            this.Transformation = new Transformation(); 
+            this.Elements = new List<Element>();
+        }
 
         public void Update()
         {
+            //TODO: Recurential multiplication parent transformation
             this.updateChildren();
             this.updateElements();
         }

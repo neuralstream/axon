@@ -47,11 +47,11 @@ namespace Axon
                 );
                 
                 GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
-
-                //this.Bitmap.UnlockBits(bitmap_data);
-                //this.Bitmap.Dispose();
+                
+                this.Bitmap.UnlockBits(bitmap_data);
+                this.Bitmap.Dispose();
                 GL.BindTexture(TextureTarget.Texture2D, 0);
-
+                GL.DeleteVertexArrays
                //GL.Enable(EnableCap.Texture2D);
         }
     }

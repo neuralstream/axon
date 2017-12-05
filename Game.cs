@@ -43,10 +43,18 @@ namespace Axon
             GL.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
+            foreach(Scene scene in Scenes)
+            {
+                foreach(Entity camera in scene.Cameras)
+                {
+                    camera.Update();
+                }
+            }
             foreach(Screen screen in Screens)
             {
                 screen.Update();
             }
+            
 
             window.SwapBuffers();
             window.Title = "FPS: " + ((int)(1/window.RenderTime)).ToString();

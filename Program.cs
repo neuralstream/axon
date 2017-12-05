@@ -24,14 +24,12 @@ namespace Axon
             // Create entities
             Scene1.Entities.Add(createBackground());
             Scene1.Entities.Add(createSword());
-
-            // Create cameras
-            Camera Camera1 = new Camera(Scene1);
-            Scene1.Cameras.Add(Camera1);
+            Entity Camera = createCamera(Scene1);
+            Scene1.Cameras.Add(Camera);
 
             // Create screens
-            Screen Screen1 = new Screen(-1,-1, 1, 0, Camera1);
-            Screen Screen2 = new Screen(-1, 0, 1, 1, Camera1);
+            Screen Screen1 = new Screen(-1,-1, 1, 0, ((Camera)Camera.Elements[0]).Texture);
+            Screen Screen2 = new Screen(-1, 0, 1, 1, ((Camera)Camera.Elements[0]).Texture);
             Game.Screens.Add(Screen1);
             Game.Screens.Add(Screen2);
         }
@@ -61,6 +59,15 @@ namespace Axon
             Sword.Move(new Vector3(0,-0.25f,0)); 
 
             return Sword;
+        }
+
+        static Entity createCamera(Scene Scene)
+        {
+            Entity Camera = new Entity();
+            Camera Camera1 = new Camera(Scene);
+            Camera.Elements.Add(Camera1);
+
+            return Camera;
         }
         
     }
